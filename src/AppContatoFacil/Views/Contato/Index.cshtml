@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Lista de Contatos";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<hr />
+
+<a class="btn btn-primary mb-3" asp-action="Create" accesskey="n">
+    <i class="fa fa-plus"></i>
+    <u>N</u>ovo
+</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Celular</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="align-middle">
+            <th scope="row">1</th>
+            <td>Vitor Barbieri da Silva</td>
+            <td>vitor@gmail.com</td>
+            <td>(47) 99945-1707</td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="1">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="1">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        <tr class="align-middle">
+            <th scope="row">2</th>
+            <td>Ana Cláudia Mendes Fonseca</td>
+            <td>ana@gmail.com</td>
+            <td>(47) 99209-3026</td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="2">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="2">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

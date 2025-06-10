@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Excluir Contato";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<hr />
+
+<div class="col-lg-6 mx-auto">
+    <p class="text-center">Você tem certeza que deseja excluir este contato?</p>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            Nome:
+        </dt>
+        <dd class="col-sm-10">
+            Vitor Barbieri da Silva
+        </dd>
+        <dt class="col-sm-2">
+            E-mail:
+        </dt>
+        <dd class="col-sm-10">
+            vitor@gmail.com
+        </dd>
+        <dt class="col-sm-2">
+            Celular:
+        </dt>
+        <dd class="col-sm-10">
+            (47) 99945-1707
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-danger" accesskey="e"><u>E</u>xcluir</button>
+            <a class="btn btn-outline-secondary" asp-action="Index" accesskey="v"><u>V</u>oltar</a>
+        </div>
+    </form>
+</div>
