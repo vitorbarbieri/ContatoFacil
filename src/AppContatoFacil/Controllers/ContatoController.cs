@@ -1,12 +1,22 @@
+using AppContatoFacil.Models;
+using AppContatoFacil.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppContatoFacil.Controllers
 {
     public class ContatoController : Controller
     {
+        private readonly IContatoRepository _contatoRepository;
+
+        public ContatoController(IContatoRepository contatoRepository)
+        {
+            _contatoRepository = contatoRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            List<Contato> contatos = _contatoRepository.GetAll();
+            return View(contatos);
         }
 
         public IActionResult Create()
@@ -16,9 +26,14 @@ namespace AppContatoFacil.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(int id)
+        public IActionResult Create(Contato contato)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _contatoRepository.Add(contato);
+                return RedirectToAction("Index");
+            }
+            return View(contato);
         }
 
         public IActionResult Edit()
