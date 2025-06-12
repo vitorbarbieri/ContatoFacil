@@ -1,3 +1,5 @@
+@model Contato
+
 @{
     ViewData["Title"] = "Excluir Contato";
 }
@@ -7,32 +9,34 @@
 <hr />
 
 <div class="col-lg-6 mx-auto">
-    <p class="text-center">Você tem certeza que deseja excluir este contato?</p>
+    <p class="text-center">Você tem certeza que deseja excluir o contato <b>@Model.Nome</b>?</p>
 
     <dl class="row">
         <dt class="col-sm-2">
-            Nome:
+            @Html.DisplayNameFor(model => model.Nome):
         </dt>
         <dd class="col-sm-10">
-            Vitor Barbieri da Silva
+            @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class="col-sm-2">
-            E-mail:
+            @Html.DisplayNameFor(model => model.Email):
         </dt>
         <dd class="col-sm-10">
-            vitor@gmail.com
+            @Html.DisplayFor(model => model.Email)
         </dd>
         <dt class="col-sm-2">
-            Celular:
+            @Html.DisplayNameFor(model => model.Celular):
         </dt>
         <dd class="col-sm-10">
-            (47) 99945-1707
+            @Html.DisplayFor(model => model.Celular)
         </dd>
     </dl>
 
-    <form asp-action="Delete" method="post">
+    <form asp-controller="Contato" asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-danger" accesskey="e"><u>E</u>xcluir</button>
+            <button type="submit" class="btn btn-danger" accesskey="x">E<u>x</u>cluir</button>
             <a class="btn btn-outline-secondary" asp-action="Index" accesskey="v"><u>V</u>oltar</a>
         </div>
     </form>

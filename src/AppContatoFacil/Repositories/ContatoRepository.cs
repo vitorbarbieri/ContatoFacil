@@ -13,6 +13,11 @@ namespace AppContatoFacil.Repositories
             _context = context;
         }
 
+        public Contato GetById(int id)
+        {
+            return _context.Contatos.FirstOrDefault(c => c.Id == id);
+        }
+
         public List<Contato> GetAll()
         {
             return _context.Contatos.OrderBy(c => c.Nome).ToList();
@@ -23,6 +28,25 @@ namespace AppContatoFacil.Repositories
             _context.Contatos.Add(contato);
             _context.SaveChanges();
             return contato;
+        }
+
+        public Contato Update(Contato contato)
+        {
+            _context.Contatos.Update(contato);
+            _context.SaveChanges();
+            return contato;
+        }
+
+        public void Delete(int id)
+        {
+            Contato contato = GetById(id);
+            if (contato == null)
+            {
+                throw new ArgumentException("Contato não encontrado", nameof(id));
+            }
+
+            _context.Contatos.Remove(contato);
+            _context.SaveChanges();
         }
     }
 }

@@ -31,26 +31,48 @@ namespace AppContatoFacil.Controllers
             if (ModelState.IsValid)
             {
                 _contatoRepository.Add(contato);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(contato);
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            Contato contato = _contatoRepository.GetById(id);
+            if (contato == null)
+            {
+                return NotFound();
+            }
+
+            return View(contato);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id, Contato contato)
         {
-            return View();
+            if (id != contato.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _contatoRepository.Update(contato);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(contato);
         }
 
         public IActionResult Delete(int id)
         {
-            return View();
+            Contato contato = _contatoRepository.GetById(id);
+            if (contato == null)
+            {
+                return NotFound();
+            }
+
+            return View(contato);
         }
 
         [HttpPost]
@@ -58,7 +80,14 @@ namespace AppContatoFacil.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            return View();
+            Contato contato = _contatoRepository.GetById(id);
+            if (contato == null)
+            {
+                return NotFound();
+            }
+
+            _contatoRepository.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

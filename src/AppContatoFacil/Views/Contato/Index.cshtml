@@ -42,10 +42,10 @@
                     @Html.DisplayFor(modelItem => contato.Celular)
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-controller="Contato" asp-action="Edit" asp-route-id="1">
+                    <a class="btn btn-warning" asp-controller="Contato" asp-action="Edit" asp-route-id="@contato.Id">
                         <i class="fa fa-pencil"></i>
                     </a>
-                    <a class="btn btn-danger" asp-controller="Contato" asp-action="Delete" asp-route-id="1">
+                    <a class="btn btn-danger" asp-controller="Contato" asp-action="Delete" asp-route-id="@contato.Id">
                         <i class="fa fa-trash"></i>
                     </a>
                 </td>

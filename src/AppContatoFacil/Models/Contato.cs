@@ -14,6 +14,7 @@ namespace AppContatoFacil.Models
         public string? Nome { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [Display(Name = "E-mail")]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "O campo {0} deve ser um e-mail válido.")]
         [MaxLength(100, ErrorMessage = "O campo {0} deve ter no máximo 100 caracteres.")]
         public string? Email { get; set; }
