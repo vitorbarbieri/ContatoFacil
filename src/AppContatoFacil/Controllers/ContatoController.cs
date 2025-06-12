@@ -30,8 +30,16 @@ namespace AppContatoFacil.Controllers
         {
             if (ModelState.IsValid)
             {
-                _contatoRepository.Add(contato);
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _contatoRepository.Add(contato);
+                    TempData["Sucesso"] = "Contato adicionado com sucesso!";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception erro)
+                {
+                    TempData["Erro"] = "Erro ao adicionar contato: " + erro.Message;
+                }
             }
             return View(contato);
         }
@@ -58,8 +66,16 @@ namespace AppContatoFacil.Controllers
 
             if (ModelState.IsValid)
             {
-                _contatoRepository.Update(contato);
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _contatoRepository.Update(contato);
+                    TempData["Sucesso"] = "Contato atualizado com sucesso!";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception erro)
+                {
+                    TempData["Erro"] = "Erro ao atualizar contato: " + erro.Message;
+                }
             }
             return View(contato);
         }
@@ -80,14 +96,23 @@ namespace AppContatoFacil.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            Contato contato = _contatoRepository.GetById(id);
-            if (contato == null)
+            try
             {
-                return NotFound();
-            }
+                Contato contato = _contatoRepository.GetById(id);
+                if (contato == null)
+                {
+                    return NotFound();
+                }
 
-            _contatoRepository.Delete(id);
-            return RedirectToAction(nameof(Index));
+                _contatoRepository.Delete(id);
+                TempData["Sucesso"] = "Contato excluido com sucesso!";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception erro)
+            {
+                TempData["Erro"] = "Erro ao excluir contato: " + erro.Message;
+                return View();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

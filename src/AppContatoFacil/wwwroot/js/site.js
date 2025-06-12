@@ -1,4 +1,15 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Espera o DOM carregar
+document.addEventListener("DOMContentLoaded", function () {
+    // Seleciona todos os alerts
+    const alerts = document.querySelectorAll('.alert');
 
-// Write your JavaScript code.
+    alerts.forEach(function (alert) {
+        // Espera 4 segundos e depois esconde o alert
+        setTimeout(function () {
+            alert.classList.remove('show');
+            alert.classList.add('fade');
+            // Remove do DOM após a transição
+            setTimeout(() => alert.remove(), 500);
+        }, 4000);
+    });
+});

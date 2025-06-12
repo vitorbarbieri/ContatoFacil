@@ -10,7 +10,7 @@ namespace AppContatoFacil.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [MaxLength(50, ErrorMessage = "O campo {0} deve ter no máximo 100 caracteres.")]
+        [MaxLength(50, ErrorMessage = "O campo {0} deve ter no máximo 50 caracteres.")]
         public string? Nome { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
